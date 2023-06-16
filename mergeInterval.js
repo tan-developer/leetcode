@@ -16,4 +16,4 @@ const merge = function (arr) {
 
 
 
-merge([[1,4],[2,3]])
+merge([[1,2],[2,3],[3,4],[1,3]])
