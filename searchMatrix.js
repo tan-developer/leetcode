@@ -4,38 +4,21 @@
  * @return {boolean}
  */
 var searchMatrix = function (matrix, target) {
-  let maxIndexRow = matrix[0].length;
-
-  for (let i = 0; i < matrix.length; i++) {
-    if (matrix[i][0] < target) {
-      for (let j = 0; j < maxIndexRow; j++) {
-        if (matrix[i][j] > target) {
-          maxIndexRow -= 1;
-          break;
-        }
-
-        if (matrix[i][j] === target) {
-          return true;
-        }
-      }
-    } else if (matrix[i][0] === target) {
+  if (matrix == null || matrix.length < 1 || matrix[0].length < 1) {
+    return false;
+  }
+  col = matrix[0].length - 1;
+  row = 0;
+  while (col >= 0 && row <= matrix.length - 1) {
+    if (target == matrix[row][col]) {
       return true;
-    }else {
-      break;
+    } else if (target < matrix[row][col]) {
+      col--;
+    } else if (target > matrix[row][col]) {
+      row++;
     }
   }
-  return false
+  return false;
 };
 
-console.log(
-  searchMatrix(
-    [
-      [1, 4, 7, 11, 15],
-      [2, 5, 8, 12, 19],
-      [3, 6, 9, 16, 22],
-      [10, 13, 14, 17, 24],
-      [18, 21, 23, 26, 30],
-    ],
-    20
-  )
-);
+console.log(searchMatrix([[-5], [-10]], -5));
